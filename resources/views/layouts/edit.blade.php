@@ -17,7 +17,7 @@
                             @if($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name')}}</span>
                             @endif
-                        </div>
+                        </div> 
                         <div class="form-group">
                             <label>Description</label>
                             <textarea class="form-control" rows="4" name="description">{{old('description',$product->description)}}</textarea>
