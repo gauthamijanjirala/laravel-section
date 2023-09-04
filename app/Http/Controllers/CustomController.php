@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\section;
+// use App\Models\section;
+use App\Models\News;
 use File;
 
 
@@ -12,7 +13,7 @@ class CustomController extends Controller
 {
     public function index()
     {
-        $section = section::orderBy('id','desc')->paginate(8);
+        $section = News::orderBy('id','desc')->paginate(8);
         // dd($section->toArray());
         return view('news.index', compact('section'));
     }
@@ -22,43 +23,44 @@ class CustomController extends Controller
     }
     public function create()
     {
-        return view('layouts.create');
+        return view('news.create');
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         // Validate data 
         $request->validate([
             'title' => 'required',
             'description' => 'required', 
         ]);
-        $section = new section;
+        $section = new News;
         $section->title = $request->title;
         $section->description = $request->description;
 
         $section->save();
-        return redirect()->route('auth.news')->withsuccess('news created');
+        return redirect()->route('news.index')->withsuccess('news created');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $sections = section::where('id')->first();
+        $sections = News::where('id',$id)->first();
 
         return view('news.edit', ['section' => $sections]);
     }
 
     // update to page.............
-    public function update(Request $request, $sections)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
             'description' => 'required',
         ]);
         
-        $sections->fill($request->post())->save();
-
-        return redirect()->route('auth.news')->with('success');
+        $data = News::where('id',$id)->first();
+        $data->title        = $request->title;
+        $data->description  = $request->description;
+        $data->save();
+        return redirect()->route('news.index')->with('success','News has been updated successfully');
     }
 
     // public function update(Request $request)
@@ -79,13 +81,12 @@ class CustomController extends Controller
         // return redirect()->route('auth.news')->withsuccess('News Updated');
     // }
 
-    public function destroy()
+    public function destroy($id)
     {
-        $section = section::where()->first();
+        $section = News::where('id',$id)->first();
         
         $section->delete();
-        dd($section->all());
-        // return back()->withSuccess('Product Deleted !!!'); 
+        return back()->with('success','News has been deleted succesfully'); 
     }
 
 

@@ -95,14 +95,12 @@
     </div>
     <div class="sidebar">
         <!-- <a class="active" href="#home">Home</a> -->
-        <a href="{{ route('auth.news') }}">News</a>
+        <a href="{{ route('news.index') }}">News</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
     </div>    
     
     @yield('main')
-
-
 
 </body>
 </html>
