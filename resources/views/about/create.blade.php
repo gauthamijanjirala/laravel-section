@@ -1,17 +1,17 @@
 @extends('master')
-
 @section('main')
+
     <div class="container">
         <div class="row justify-content-center pt-5">
             <div class="col-sm-8">
                 <div class="card mt-3 p-3">
-                    <form method="POST" action="{{ route('news.store') }}"enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('about.store') }}"enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="title" class="form-control" placeholder="Title" value="{{old('title')}}"/>
-                            @if($errors->has('title'))
-                                <span class="text-danger">{{ $errors->first('title')}}</span>
+                            <label>Text</label>
+                            <input type="text" name="text" class="form-control" placeholder="Text" value="{{old('text')}}"/>
+                            @if($errors->has('text'))
+                                <span class="text-danger">{{ $errors->first('text')}}</span>
                             @endif
                         </div>
                         <div class="form-group">
@@ -27,4 +27,5 @@
             </div>
         </div>
     </div>
+
 @endsection

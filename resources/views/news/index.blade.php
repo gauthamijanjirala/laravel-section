@@ -17,9 +17,9 @@
         <tbody>
             @foreach($section as $key => $value)
             <tr>
-            <?php // echo $loop->index+1  ?>
+            <?php //echo $loop->index+1  ?>
                 <td>{{ $loop->index+1 }}</td>
-                <td>
+                <td> 
                     <p>{{ $value->title }}</p>
                 </td>
                 <td>
@@ -33,6 +33,7 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
+                
             </tr>
             @endforeach
         </tbody>

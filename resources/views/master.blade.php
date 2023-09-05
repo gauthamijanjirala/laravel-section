@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <title>Register</title>
+    <title>Registration_Section</title>
 </head>
 <style>
 
@@ -96,8 +96,8 @@
     <div class="sidebar">
         <!-- <a class="active" href="#home">Home</a> -->
         <a href="{{ route('news.index') }}">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <a href="{{ route('contact.index')}}">Contact</a>
+        <a href="{{ route('about.index')}}">About</a>
     </div>    
     
     @yield('main')

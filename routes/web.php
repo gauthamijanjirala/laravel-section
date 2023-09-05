@@ -1,8 +1,10 @@
 <?php
 
+// use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AboutController;
 
 
 /*
@@ -29,6 +31,27 @@ Route::delete('news/delete/{id}',[CustomController::class,'destroy'])->name('new
 
 
 // Route::resource('news', NewsController::class);
+
+//  Contact controller
+Route::get('contact', [ContactController::class,'index'])->name('contact.index');
+Route::get('contact/create', [ContactController::class,'create'])->name('contact.create');
+Route::post('contact/store', [ContactController::class,'store'])->name('contact.store');
+Route::get('contact/edit/{id}',[ContactController::class,'edit'])->name('contact.edit');
+Route::put('contact/update/{id}',[ContactController::class,'update'])->name('contact.update');
+Route::delete('contact/delete/{id}',[ContactController::class,'destroy'])->name('contact.delete');
+
+// About Controller
+Route::get('about', [Aboutcontroller::class,'index'])->name('about.index');
+Route::get('about/create', [Aboutcontroller::class,'create'])->name('about.create');
+Route::post('about/store', [Aboutcontroller::class,'store'])->name('about.store');
+Route::get('about/edit/{id}',[Aboutcontroller::class,'edit'])->name('about.edit');
+Route::put('about/update/{id}',[Aboutcontroller::class,'update'])->name('about.update');
+Route::delete('about/delete/{id}',[Aboutcontroller::class,'destroy'])->name('about.delete');
+
+
+
+
+
 
 
 
