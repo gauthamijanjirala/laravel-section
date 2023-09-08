@@ -21,14 +21,14 @@ class AboutController extends Controller
         // Validate data 
         $request->validate([
             'text' => 'required',
-            'description' => 'required', 
+            'description' => 'required|min:10', 
         ]);
         $section = new About;
         $section->text = $request->text;
         $section->description = $request->text;
 
         $section->save();
-        return redirect()->route('about.index')->withsuccess('About Created');
+        return redirect()->route('about.index')->withsuccess('About has been created successfully');
     }
     public function edit($id)
     {

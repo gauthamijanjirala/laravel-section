@@ -7,7 +7,7 @@
                 @csrf   
                 @method('PUT')
                     <label>Text</label>
-                        <input type="text" name="text" class="form-control"  value="{{old('name', $section->name)}}"/>
+                        <input type="text" name="text" class="form-control"  value="{{old('text', $section->text)}}"/>
                     @if($errors->has('text'))
                         <span class="text-danger">{{ $errors->first('text')}}</span>
                     @endif
