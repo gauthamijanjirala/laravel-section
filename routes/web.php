@@ -28,6 +28,7 @@ Route::post('news/store', [CustomController::class,'store'])->name('news.store')
 Route::get('news/edit/{id}',[CustomController::class,'edit'])->name('news.edit');
 Route::put('news/update/{id}',[CustomController::class,'update'])->name('news.update');
 Route::delete('news/delete/{id}',[CustomController::class,'destroy'])->name('news.delete');
+Route::post('news/imageDelete/{id}',[CustomController::class,'imageDelete']);
 
 
 // Route::resource('news', NewsController::class);

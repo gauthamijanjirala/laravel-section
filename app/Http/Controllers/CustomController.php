@@ -31,10 +31,17 @@ class CustomController extends Controller
         // Validate data 
         $request->validate([
             'title' => 'required',
+            'image' => 'required|mimes:jpeg,jpg,png,gif|max:100000',
             'description' => 'required', 
         ]);
+
+        // Upload Image
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('news'), $imageName);
+        
         $section = new News;
         $section->title = $request->title;
+        $section->image = $imageName;
         $section->description = $request->description;
 
         $section->save();
@@ -53,41 +60,41 @@ class CustomController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:100000',
             'description' => 'required',
         ]);
         
         $data = News::where('id',$id)->first();
+        if (isset($request->image)) {
+            // Upload Image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('news'), $imageName);
+            $data->image = $imageName;
+        }
         $data->title        = $request->title;
         $data->description  = $request->description;
         $data->save();
         return redirect()->route('news.index')->with('success','News has been updated successfully');
     }
 
-    // public function update(Request $request)
-    // {
-    //     // Validate data 
-    //     $request->validate([
-    //         'title' => 'required',
-    //         'description' => 'required',
-    //         dd($request->all())
-    //     ]);
-
-
-        // $section = section::where('id')->first();
-        // $section->title = $request->title;
-        // $section->description = $request->description;
-
-        // $section->save();
-        // return redirect()->route('auth.news')->withsuccess('News Updated');
-    // }
-
     public function destroy($id)
     {
         $section = News::where('id',$id)->first();
+        $image_path = public_path('news/' . $section->image);
+        if (File::exists($image_path)) {
+            File::delete($image_path);
+        }
         
         $section->delete();
         return back()->with('success','News has been deleted succesfully'); 
     }
 
+    public function imageDelete() {
+        $image_name = '$image';
+        $image_path = public_path('news/'.$image_name);
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
+    }
 
 }

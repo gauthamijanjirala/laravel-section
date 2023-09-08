@@ -11,9 +11,16 @@
                 @method('PUT')
                 <div class="form-group">
                     <label>Title</label>
-                    <input type="text" name="title" class="form-control" value="{{ $section->title }}"/>
+                    <input type="text" name="title" class="form-control" value="{{old('title', $section->title)}}"/>
                     @if($errors->has('title'))
                         <span class="text-danger">{{ $errors->first('title')}}</span>
+                    @endif
+                </div>
+                <div clas="form-group">
+                    <label> Image </label>
+                    <input type="file" name="image" clas="form-control"/><br>
+                    @if($errors->has('image'))
+                        <span class="text-danger">{{ $errors->first('image')}}</span>
                     @endif
                 </div>
                 <div class="form-group">

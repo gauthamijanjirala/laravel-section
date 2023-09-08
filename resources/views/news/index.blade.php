@@ -10,6 +10,7 @@
             <tr>
                 <th>Sr.no</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Description</th>
                 <th>Action</th>
             </tr>
@@ -23,6 +24,9 @@
                     <p>{{ $value->title }}</p>
                 </td>
                 <td>
+                    <img src="news/{{ $value->image }}" class="rounded-circle" width="40" height="40"/> 
+                </td>
+                <td>
                     <p>{{ $value->description }}</p>
                 </td>
                 <td>
@@ -30,7 +34,10 @@
                     <form action="{{ route('news.delete',$value->id) }}" method="Post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                        <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">
+                        {{ __('Delete') }}
+                        </button>
                     </form>
                 </td>
                 

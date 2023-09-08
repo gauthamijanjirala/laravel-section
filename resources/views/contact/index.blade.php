@@ -33,7 +33,10 @@
                     <form action="{{ route('contact.delete',$value->id) }}" method="Post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <!-- <button type="submit" class="btn btn-danger">Delete</button> -->
+                        <button class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">
+                        {{ __('Delete') }}
+                        </button>
                     </form>
                 </td>
             </tr>
