@@ -31,6 +31,8 @@
                 </td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('news.edit',$value->id) }} ">Edit</a>
+                    <a class="btn btn-success" href="{{route('news.show',$value->id)}}">Show</a>
+
                     <form action="{{ route('news.delete',$value->id) }}" method="Post">
                         @csrf
                         @method('DELETE')

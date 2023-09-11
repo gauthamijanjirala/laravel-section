@@ -27,6 +27,8 @@
                 </td>
                 <td>
                 <a class="btn btn-primary" href="{{ route('about.edit',$value->id) }} ">Edit</a>
+                <a class="btn btn-success" href="{{route('about.show',$value->id)}}">Show</a>
+
                     <form action="{{ route('about.delete',$value->id) }}" method="Post">
                         @csrf
                         @method('DELETE')

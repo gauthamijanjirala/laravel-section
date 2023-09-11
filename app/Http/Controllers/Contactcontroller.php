@@ -62,6 +62,13 @@ class Contactcontroller extends Controller
         $section->delete();
         return back()->with('success','Contact has been deleted succesfully'); 
     }
+    public function show($id)
+    {
+        $section = Contact::where('id', $id)->first();
+        // dd($section->toArray());
+        return view('contact.show', ['contact' => $section]);
+
+    }
 
 
 

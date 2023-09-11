@@ -8,12 +8,12 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $section = About::orderBy('id','desc')->paginate(8);
+        $section = About::orderBy('id','desc')->paginate(5);
         // dd($section->toArray());
         return view('about.index', compact('section'));
     }
     public function create()
-    {
+    {     
         return view('about.create');
     }
     public function store(Request $request)
@@ -22,7 +22,7 @@ class AboutController extends Controller
         $request->validate([
             'text' => 'required',
             'description' => 'required|min:10', 
-        ]);
+        ]);         
         $section = new About;
         $section->text = $request->text;
         $section->description = $request->text;
@@ -31,7 +31,7 @@ class AboutController extends Controller
         return redirect()->route('about.index')->withsuccess('About has been created successfully');
     }
     public function edit($id)
-    {
+    {   if($id)
         $about = About::where('id',$id)->first();
 
         return view('about.edit', ['section' => $about]);
@@ -48,7 +48,7 @@ class AboutController extends Controller
         $data->text        = $request->text;
         $data->description      = $request->description;
         $data->save();
-        return redirect()->route('about.index')->with('success','About has been updated successfully');
+        return redirect()->route('about.index')->with('About has been updated successfully');
     }
     public function destroy($id)
     {
@@ -56,5 +56,12 @@ class AboutController extends Controller
         
         $section->delete();
         return back()->with('success','About has been deleted succesfully'); 
+    }
+    public function show($id)
+    {
+        $section = About::where('id', $id)->first();
+        // dd($section->toArray());
+        return view('about.show', ['about' => $section]);
+
     }
 }

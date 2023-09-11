@@ -30,6 +30,8 @@
                 </td>
                 <td>
                 <a class="btn btn-primary" href="{{ route('contact.edit',$value->id) }} ">Edit</a>
+                <a class="btn btn-success" href="{{route('contact.show',$value->id)}}">Show</a>
+
                     <form action="{{ route('contact.delete',$value->id) }}" method="Post">
                         @csrf
                         @method('DELETE')

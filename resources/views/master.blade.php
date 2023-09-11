@@ -97,7 +97,7 @@
         <!-- <a class="active" href="#home">Home</a> -->
         <a href="{{ route('news.index') }}">News</a>
         <a href="{{ route('contact.index')}}">Contact</a>
-        <a href="{{ route('about.index')}}">About</a>
+        <a href="{{ route('about.index')}}">About Us</a>
     </div>    
     
     @yield('main')

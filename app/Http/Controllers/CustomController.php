@@ -13,7 +13,9 @@ class CustomController extends Controller
 {
     public function index()
     {
-        $section = News::orderBy('id','desc')->paginate(8);
+        // dd('ss');
+        // $section = News::orderBy('id','desc')->paginate(8);
+        $section = News::orderBy('id','desc')->get();
         // dd($section->toArray());
         return view('news.index', compact('section'));
     }
@@ -95,6 +97,13 @@ class CustomController extends Controller
         if(File::exists($image_path)) {
             File::delete($image_path);
         }
+    }
+    public function show($id)
+    {
+        $section = News::where('id', $id)->first();
+        // dd($section->toArray());
+        return view('news.show', ['news' => $section]);
+
     }
 
 }
